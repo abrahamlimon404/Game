@@ -1,10 +1,10 @@
 import tkinter 
 import random 
 from pygame import mixer
+from playsound import playsound
 from tkinter.constants import CENTER, DISABLED
 mixer.init()
-correct_answer_mp3=mixer.Sound("Audio1.mp3")
-wrong_answer_mp3 = mixer.Sound('Audio2.mp3')
+
 
 colours = ['Red','Blue','Green','Pink','Black', 'Yellow','Orange','White','Purple','gray','teal'] 
 score = 0
@@ -12,14 +12,12 @@ timeleft = 30
 attempts = 0
 counter1 = 0
 mixer.init()
-correct_answer_mp3 = mixer.Sound('Audio1.mp3')
-wrong_anwer_mp3 = mixer.Sound('Audio2.mp3')
+
 def startGame(event):
     global counter1
-    startup = mixer.Sound('startaudio.mp3')
     if counter1 == 0:
-        mixer.Sound.play(startup)
-    global scorelabel
+        playsound("startaudio.mp3")
+        global scorelabel
     
     if timeleft == 30:
         countdown()
@@ -41,13 +39,11 @@ def nextColour():
         if entry1.get().lower() == colours[1].lower():
             score += 1
             attempts +=1
-            
-            mixer.Sound.play(correct_answer_mp3)
+            playsound("Audio1.mp3")
         else:
             if counter > 1:
-                
+                playsound("Audio2.mp3")
                 attempts +=1
-                mixer.Sound.play(wrong_answer_mp3)
             counter +=5
             
         entry1.delete(0, tkinter.END)
