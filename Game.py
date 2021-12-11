@@ -1,21 +1,26 @@
 import tkinter 
 import random 
-import time
+from pygame import mixer
 from tkinter.constants import CENTER, DISABLED
-colours = ['Red','Blue','Green','Pink','Black', 'Yellow','Orange','White','Purple','Brown'] 
+mixer.init()
+correct_answer_mp3=mixer.Sound("Audio1.mp3")
+wrong_answer_mp3 = mixer.Sound('Audio2.mp3')
+
+colours = ['Red','Blue','Green','Pink','Black', 'Yellow','Orange','White','Purple','gray','teal'] 
 score = 0
 timeleft = 30 
-attempts = -1
-
+attempts = 0
+mixer.init()
+correct_answer_mp3 = mixer.Sound('Audio1.mp3')
+wrong_anwer_mp3 = mixer.Sound('Audio2.mp3')
 def startGame(event):
     global scorelabel
+    
     if timeleft == 30:
         countdown()
     nextColour() 
-    global attempts
-    
-    
     scoreLabel.place(relx=0.064,rely=0.22)
+counter = 0
 def nextColour():
     global score 
     global timeleft
@@ -23,24 +28,30 @@ def nextColour():
     global x
     global y
     global lastLabel
-    
-
-    
-
+    global counter
     
     if timeleft > 0:
         entry1.focus_set()
         if entry1.get().lower() == colours[1].lower():
             score += 1
             attempts +=1
+            
+            mixer.Sound.play(correct_answer_mp3)
         else:
-            attempts +=1
+            if counter > 1:
+                
+                attempts +=1
+                mixer.Sound.play(wrong_answer_mp3)
+            counter +=5
+            
         entry1.delete(0, tkinter.END)
         random.shuffle(colours)
         label.configure(fg = str(colours[1]), text = str(colours[0]),bg='sky blue',borderwidth= 3,relief='solid')
         scoreLabel.configure(text = "Score: " + str(score),bg='sky blue',borderwidth= 2,relief='solid',padx =10,pady=10,width =12) 
         thelabel. configure(text = 'Attempts:  ' + str(attempts),bg = 'sky blue',borderwidth= 2,relief='solid',font = ('Helvetica', 30),padx =10,pady=10)
-    else: 
+        
+
+    if timeleft== 0:
         frame.tkraise()
         
         x -= 10
@@ -59,7 +70,7 @@ def nextColour():
         root.geometry(screensize)
         gameOverLabelWidth= GameOverLabel.winfo_reqwidth()
         
-        print(gameOverLabelWidth)
+        
         Game_over_x = (x/2) -(gameOverLabelWidth/2)
         GameOverLabel.place(x=Game_over_x ,rely=0.5)
         
@@ -78,19 +89,10 @@ def nextColour():
         lastLabel.configure(text =xyz1,bg = 'light blue',borderwidth= 2,relief='solid',font = ('ariel',50),padx =10,pady=10)
         PercentScore_width = lastLabel.winfo_reqwidth()
         PercentScore_x = (x/2)-(PercentScore_width/2)
-        print(PercentScore_width)
+        
         lastLabel.place(x = PercentScore_x, rely = 0.37)
 
         
-
-
-        
-        
-
-
-
-       
-
 def countdown():
     global timeleft
     if timeleft > 0:
