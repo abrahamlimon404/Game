@@ -10,16 +10,22 @@ colours = ['Red','Blue','Green','Pink','Black', 'Yellow','Orange','White','Purpl
 score = 0
 timeleft = 30 
 attempts = 0
+counter1 = 0
 mixer.init()
 correct_answer_mp3 = mixer.Sound('Audio1.mp3')
 wrong_anwer_mp3 = mixer.Sound('Audio2.mp3')
 def startGame(event):
+    global counter1
+    startup = mixer.Sound('startaudio.mp3')
+    if counter1 == 0:
+        mixer.Sound.play(startup)
     global scorelabel
     
     if timeleft == 30:
         countdown()
     nextColour() 
     scoreLabel.place(relx=0.064,rely=0.22)
+    counter1+=1
 counter = 0
 def nextColour():
     global score 
