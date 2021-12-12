@@ -1,4 +1,4 @@
-BY:Abraham Limon and Melvin Galicia Diaz
+#BY:Abraham Limon and Melvin Galicia Diaz
 import tkinter 
 import random 
 from playsound import playsound
