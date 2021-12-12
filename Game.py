@@ -1,12 +1,13 @@
+BY:Abraham Limon and Melvin Galicia Diaz
 import tkinter 
 import random 
 from playsound import playsound
-
+import pygame
 
 #Creating the array of colors and basic variables that will be used
 colours = ['Red','Blue','Green','Pink','Black', 'Yellow','Orange','White','Purple','gray','teal'] 
 score = 0
-timeleft = 30 
+timeleft = 30
 attempts = 0
 counter1 = 0
 
@@ -113,6 +114,9 @@ def nextColor():
         PercentScore_width = lastLabel.winfo_reqwidth()
         PercentScore_x = (x/2)-(PercentScore_width/2)
         lastLabel.place(x = PercentScore_x, rely = 0.37)
+
+        #Stops music
+        pygame.mixer.music.stop()
 
   # this  function is changes the timeLabel  so that it is changeing the time left    
 def countdown():
