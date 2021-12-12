@@ -1,3 +1,4 @@
+# BY: Melvin Galicia Diaz and Abraham Limon
 import tkinter as tk
 import pygame
 
