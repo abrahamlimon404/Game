@@ -1,4 +1,5 @@
 #Created by Melvin Galicia Diaz and Abraham Limon
+#GUI Project sec-07 5
 Color matching game
 
 *Once the zip files has been dowloaded you need to unzip or extract them
