@@ -1,5 +1,6 @@
 #Created by Melvin Galicia Diaz and Abraham Limon
 Color matching game
+
 *Once the zip files has been dowloaded you need to unzip or extract them
  on windows press right click, extract All, extract.
  on mac simply double click the zip folder
